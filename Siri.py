@@ -1,6 +1,7 @@
 import pyttsx3
 import datetime
 import speech_recognition as sr
+import wikipedia
 
 engine = pyttsx3.init()
 
@@ -64,6 +65,12 @@ if __name__ == "__main__":
             time()
         elif 'date' in query:
             date()
+        elif 'wikipedia' in query:
+            speak('Searching...')
+            query = query.replace('wikipedia',"")
+            result = wikipedia.summary(query, sentences=2)
+            print(result)
+            speak(result)
         elif 'offline' in query:
             if hour >= 22:
                 speak("Good Night Sir!")
