@@ -4,6 +4,7 @@ import speech_recognition as sr
 import wikipedia
 import smtplib
 import webbrowser as wb
+import os
 engine = pyttsx3.init()
 
 
@@ -93,14 +94,28 @@ if __name__ == "__main__":
 
         elif 'search' in query:
             speak('What do you need to search?')
-            chromepath = 'C:\Program Files\Google\Chrome\Application\chrome.exe %s'
+            chromepath = 'C:/Program Files/Google/Chrome/Application/chrome.exe %s'
             search = takecommand().lower()
             wb.get(chromepath).open_new_tab(search + '.com')
+
+        elif 'logout' in query:
+            os.system("shutdown -l")
+
+        elif 'shutdown' in query:
+            os.system("shutdown /s /t l")
+
+        elif 'restart' in query:
+            os.system("shutdown /r /t l")
+
+        elif 'music' in query:
+            songs_dir = 'F:\\My music\\fewerit'
+            songs = os.listdir(songs_dir)
+            os.startfile(os.path.join(songs_dir,songs[0]))
 
         elif 'offline' in query:
             if hour >= 22:
                 speak("Good Night Sir!")
                 quit()
             else:
-                speak("Good Bye Sir, Have a nice dayS!")
+                speak("Good Bye Sir, Have a nice day!")
                 quit()
